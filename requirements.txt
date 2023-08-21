@@ -1,0 +1,8 @@
+SQLAlchemy~=2.0.19
+selenium<4.10
+pydantic~=2.1.1
+fastapi~=0.101.0
+uvicorn==0.23.1
+undetected-chromedriver==3.5.2
+psycopg2==2.9.7
+psycopg2-binary==2.9.7

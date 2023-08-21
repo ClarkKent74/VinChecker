@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    networks:
+      - my_network
+    depends_on:
+      - db
+#      - chrome
+#
+#  chrome:
+#    image: seleniarm/standalone-chromium:114
+#    shm_size: 2g
+#    privileged: true
+#    restart: always
+#    ports:
+#      - "4444:4444"
+#      - "5900:5900"
+#      - "7900:7900"
+#    networks:
+#      - my_network
+
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      DB_NAME: vin
+      DB_USER: postgres
+      DB_PASS: 12345
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
+
+volumes:
+  pgdata:
+
